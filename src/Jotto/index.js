@@ -1,9 +1,13 @@
 import React from 'react';
 import Congrats from './Congrats';
+import GuessWords from './GuessWords';
 
 const Jotto = (props) => {
 	return(
-		<Congrats />
+		<>
+			<GuessWords />
+			<Congrats />
+		</>
 	);
 };
 

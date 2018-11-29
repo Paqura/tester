@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Counter from './Counter';
+import Jotto from './Jotto';
 class App extends Component {
-  render() {
-    return (
-      <div className="App" style={{width: '400px', margin: '20px auto'}}>
-        <Counter />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Jotto />
+			</div>
+		);
+	}
 }
-
-
 
 export default App;

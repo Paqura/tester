@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {findElementByAttr} from '../utils/test-helpers';
 import GuessWords from '../GuessWords';
 
 let instance;
@@ -17,9 +18,17 @@ const
 		return shallow(<GuessWords {...defaultProps} {...props} />);
 	};
 
-describe('GuessWords Test', () => {
-	it('should correct render without errors', () => {
-		instance = createInstance();
-		expect(instance).toBeTruthy();
+describe('If there is empty guessWords list', () => {
+	beforeEach(() => {
+		instance = createInstance({ guessWords: [] });
+	});
+
+	it('renders without errors', () => {
+		expect(instance.length).toBe(1);
+	});
+
+	it('renders with instructions to guess a word', () => {
+		const instruction = findElementByAttr(instance, 'instruction');
+		expect(instruction.text().length).not.toBe(0);
 	});
 });
