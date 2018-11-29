@@ -20,11 +20,11 @@ export default compose(
 
 	withHandlers({
 		incrementCounter: props => () => {
-			props.changeCounter((C) => C + 1);
+			props.changeCounter((counter) => counter + 1);
 		},
-		
+
 		decrementCounter: props => () => {
-			props.changeCounter((C) => C - 1);
+			props.changeCounter((counter) => counter - 1);
 		},
 	}),
 )(Counter);

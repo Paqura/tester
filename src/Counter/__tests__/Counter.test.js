@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {shallow, mount} from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
 import Counter from '../';
@@ -17,9 +17,9 @@ let instance;
  */
 
 const createInstance = (props = {}, state = null) => {
-	return shallow(
-		<Counter {...props} />,
-	);
+	const wrapper = mount(<Counter {...props} />);
+	if(state) wrapper.setState(state);
+	return wrapper;
 };
 
 /**
@@ -34,20 +34,41 @@ const findElementByAttr = (wrapper, val) => {
 	return wrapper.find(`[data-type="${val}"]`)
 };
 
-describe('Is every important component is true', () => {
-	beforeEach(() => {
-		instance = createInstance();
+describe('Counter Component Test', () => {
+	describe('Is every important component is true', () => {
+		beforeEach(() => {
+			instance = createInstance();
+		});
+
+		it('decrement is true', () => {
+			expect(findElementByAttr(instance, 'decrement')).toBeTruthy();
+		});
+
+		it('increment is true', () => {
+			expect(findElementByAttr(instance, 'increment')).toBeTruthy();
+		});
+
+		it('counter is true', () => {
+			expect(findElementByAttr(instance, 'counter')).toBeTruthy();
+		});
 	});
 
-	it('decrement is true', () => {
-		expect(findElementByAttr(instance, 'decrement')).toBeTruthy();
-	});
+	describe('Checking functionality of the Counter', () => {
+		it('Counter starts at 0', () => {
+			instance = createInstance(null, { counter: 0 });
+			const initialCounterState = instance.state('counter');
+			expect(initialCounterState).toBe(0);
+		});
 
-	it('increment is true', () => {
-		expect(findElementByAttr(instance, 'increment')).toBeTruthy();
-	});
+		it('Counter correctly grow', () => {
+			instance = createInstance();
 
-	it('counter is true', () => {
-		expect(findElementByAttr(instance, 'counter')).toBeTruthy();
+			const incrementButton = findElementByAttr(instance, 'increment');
+			incrementButton.simulate('click');
+			instance.update();
+
+			const counterText = findElementByAttr(instance, 'counter');
+			expect(counterText.text()).toContain(1);
+		});
 	});
 });
