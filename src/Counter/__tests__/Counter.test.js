@@ -1,10 +1,7 @@
 import React from 'react';
-import Enzyme, {shallow, mount} from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 
 import Counter from '../';
-
-Enzyme.configure({adapter: new EnzymeAdapter()});
 
 let instance;
 

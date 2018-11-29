@@ -1,9 +1,7 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
-import Congrats from '../Congrats';
+import {shallow} from 'enzyme';
 
-Enzyme.configure({adapter: new EnzymeAdapter()});
+import Congrats from '../Congrats';
 
 let instance;
 
