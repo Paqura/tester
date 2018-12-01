@@ -1,5 +1,7 @@
-import {compose, defaultProps, withState} from 'recompose';
+import {compose, defaultProps} from 'recompose';
+import {connect} from 'react-redux';
 import React from 'react';
+import {correctGuess} from './actions';
 import Congrats from './Congrats';
 import GuessWords from './GuessWords';
 
@@ -14,7 +16,13 @@ const Jotto = (props) => {
 };
 
 export default compose(
-	withState('isWin', 'setGameState', false),
+	connect(
+		state => ({
+			isWin: state.success.isWin,
+		}),
+
+		{correctGuess},
+	),
 
 	defaultProps({
 		guessedWords: [
