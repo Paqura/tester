@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Congrats = (props) =>
-	<div data-type="congrats">{props.success ? 'You are win!' : ''}</div>;
+	<div
+		className='notification is-info'
+		data-type='congrats'
+	>
+		{props.success ? 'You are win!' : 'Try to win'}
+	</div>;
 
 export default Congrats;
