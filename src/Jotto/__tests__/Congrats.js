@@ -17,11 +17,11 @@ describe('Congrats Test', () => {
 
 	it('returns empty string if [success] is false', () => {
 		instance = createInstance({success: false});
-		expect(instance.text()).toBe('');
+		expect(instance.text()).toBe('Try to win');
 	});
 
 	it('returns non-empty string if [success] is true', () => {
 		instance = createInstance({success: true});
-		expect(instance.text()).not.toBe('');
+		expect(instance.text()).toBe('You are win!');
 	});
 });
